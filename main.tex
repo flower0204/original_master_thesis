@@ -1,0 +1,46 @@
+%%%%% CHOOSE PAGE LAYOUT
+% The most common choices should be below.  You can also do other things, like replacing "a4paper" with "letterpaper", etc.
+
+% This one will format for two-sided binding (ie left and right pages have mirror margins; blank pages inserted where needed):
+%\documentclass[a4paper,twoside]{ociamthesis}
+% This one will format for one-sided binding (ie left margin > right margin; no extra blank pages):
+\documentclass[a4paper]{ociamthesis}
+% This one will format for PDF output (ie equal margins, no extra blank pages):
+%\documentclass[a4paper,nobind]{ociamthesis} 
+
+\input{text/preamble}
+%%%%% THE ACTUAL DOCUMENT STARTS HERE
+\begin{document}
+\input{text/settings}
+
+%%%%% CHAPTERS
+% Add or remove any chapters you'd like here, by file name (excluding '.tex'):
+\flushbottom
+\include{sections/ch1-intro}
+\include{sections/ch2-litreview}
+
+
+%% APPENDICES %% 
+% Starts lettered appendices, adds a heading in table of contents, and adds a
+%    page that just says "Appendices" to signal the end of your main text.
+\startappendices
+% Add or remove any appendices you'd like here:
+\include{sections/appendix-1}
+
+
+%%%%% REFERENCES
+
+% JEM: Quote for the top of references (just like a chapter quote if you're using them).  Comment to skip.
+\begin{savequote}[8cm]
+The first kind of intellectual and artistic personality belongs to the hedgehogs, the second to the foxes \dots
+  \qauthor{--- Sir Isaiah Berlin \cite{berlin_hedgehog_2013}}
+\end{savequote}
+
+\setlength{\baselineskip}{0pt} % JEM: Single-space References
+
+{\renewcommand*\MakeUppercase[1]{#1}%
+\printbibliography[heading=bibintoc,title={\bibtitle}]}
+
+
+
+\end{document}

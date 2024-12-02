@@ -72,7 +72,7 @@
 % CRESTS
 %
 
-\def\crest{{\includegraphics[width=4.5cm]{figures/symbol_titech.pdf}}}
+\def\crest{{\includegraphics[width=0.65\textwidth]{figures/symbol_scitokyo.pdf}}}
 
 
 %
@@ -225,7 +225,7 @@
 {\large \vspace*{1ex}
     {{\@college} \par}
 \vspace*{1ex}
-    {Tokyo Institute of Technology \par}
+    {Institute of Science Tokyo \par}
 \vspace*{20mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
@@ -296,7 +296,7 @@
     {Thesis word count: {\@wordcount} \par}
 \else
     {{\@college} \par}
-    {Tokyo Institute of Technology \par}
+    {Institute of Science Tokyo \par}
 \fi
 \vspace*{1ex}
     {{\it \submittedtext} \par}

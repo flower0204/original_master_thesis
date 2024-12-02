@@ -1,5 +1,5 @@
 # original_master_thesis
-東工大の博士論文や修士論文に良さそうです．
+*Science Tokyo*の博士論文や修士論文に良さそうです．
 
 ## コンパイル関係
 **環境** UTF-8
@@ -55,3 +55,118 @@ preambleとsettingには自分の所属や名前を書いたりするところ�
 Overleafにてサンプル例を作りました．  
 プロジェクトをコピーして自分で編集してもらってもコンパイルができると思います．  
 <https://www.overleaf.com/read/tvqmjjtzrwwj>
+
+## VSCode LaTeX Workshopでの利用
+VSCodeの [$\LaTeX$ Workshop extension](https://github.com/James-Yu/LaTeX-Workshop) を用いてコンパイルできる事を確認しています. 
+この拡張機能の使用方法については他の記事を参照してください. 
+
+<https://qiita.com/rainbartown/items/d7718f12d71e688f3573>
+
+以下はコンパイル時のVSCode内setting.jsonの設定箇所です.
+```
+"[tex]": {
+    // スニペット補完中にも補完を使えるようにする
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    // インデント幅を2にする
+    "editor.tabSize": 2
+},
+
+"[latex]": {
+    // スニペット補完中にも補完を使えるようにする
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    // インデント幅を2にする
+    "editor.tabSize": 2
+},
+
+"[bibtex]": {
+    // インデント幅を2にする
+    "editor.tabSize": 2
+},
+
+
+// ---------- LaTeX Workshop ----------
+
+// 使用パッケージのコマンドや環境の補完を有効にする
+"latex-workshop.intellisense.package.enabled": true,
+// 生成ファイルを削除するときに対象とするファイル
+// デフォルト値に "*.synctex.gz" を追加
+"latex-workshop.latex.clean.fileTypes": [
+    "*/*.aux",
+    "*/*.bbl",
+    "*/*.blg",
+    "*/*.idx",
+    "*/*.ind",
+    "*/*.lof",
+    "*/*.lot",
+    "*/*.out",
+    "*/*.toc",
+    "*/*.acn",
+    "*/*.acr",
+    "*/*.alg",
+    "*/*.glg",
+    "*/*.glo",
+    "*/*.gls",
+    "*/*.ist",
+    "*/*.fls",
+    "*/*.log",
+    "*/*.fdb_latexmk",
+    "*/*.snm",
+    "*/*.nav",
+    "*/*.dvi",
+    "*/*.synctex.gz"
+],
+
+// 生成ファイルを "out" ディレクトリに吐き出す
+"latex-workshop.latex.outDir": "out.nosync",
+// ビルドのレシピ
+"latex-workshop.latex.recipes": [
+    {
+        "name": "pdflatex",
+        "tools": [
+            "pdflatex",
+            "makeglossaries",
+            "biber",
+            "pdflatex",
+            "pdflatex",
+        ]
+    },
+],
+
+// ビルドのレシピに使われるパーツ
+"latex-workshop.latex.tools": [
+    {"name": "pdflatex",
+    "command": "pdflatex",
+    "args": [
+        "--shell-escape", // if you want to have the shell-escape flag
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-output-directory=out.nosync",
+        //"-output-directory=out",
+        //"-aux-directory=out.nosync",
+        "%DOC%" 
+        ]
+    },
+    {"name": "biber",
+    "command": "biber",
+    "args": [
+        "--output-directory=out.nosync",
+        "%DOCFILE%"
+        ]
+    },
+    {"name": "makeglossaries",
+    "command": "makeglossaries",
+    "args": [
+        "-dout.nosync",
+        "%DOCFILE%"
+        ]
+    },
+],
+
+"latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+"latex-workshop.view.pdf.viewer": "tab",
+"latex-workshop.latex.autoClean.run": "onSucceeded",
+"latex-workshop.latex.rootFile.useSubFile": true,
+"latex-workshop.latex.recipe.default": "lastUsed",
+"latex-workshop.latex.clean.subfolder.enabled": true,
+```
